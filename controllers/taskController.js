@@ -46,6 +46,7 @@ module.exports.createTask = (req, res) => {
   const { body } = req;
 
   task.push({ ...body, id: uuidv4(), completed: false });
+  console.log('body :>> ', body);
   res.status(201).send(task[task.length - 1]);
 };
 
@@ -67,12 +68,12 @@ module.exports.updateTaskById = (req, res) => {
     params: { id },
   } = req;
 
-  const foundTask = task.find(t => t.id === id);
-
+  const foundTask = task.findIndex(t => t.id === id);
+  console.log('foundTask :>> ', foundTask);
   if (foundTask == -1) {
     return res.status(404).send('Task Not Found');
   }
 
   task[foundTask] = { ...task[foundTask], ...body };
-  res.status(200).send[task[foundTask]];
+  res.status(200).send(task[foundTask]);
 };

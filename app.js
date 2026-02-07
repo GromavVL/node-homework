@@ -8,6 +8,8 @@ const {
 } = require('./controllers/taskController');
 const app = express();
 
+app.use(express.json());
+
 app.get('/task', getTask);
 app.get('/task/:id', getTaskById);
 app.post('/task', createTask);
